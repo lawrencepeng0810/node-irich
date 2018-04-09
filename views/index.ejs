@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="/">iRich 愛記帳</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <a href="/accounts/create"><button class="btn btn-success my-2 my-sm-0" type="button">新增消費</button></a>
+        </form>
+      </div>
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1> 紀錄生活中所有的花費</h1>
+          <p> 隨時記錄日常花費,早日達成財務自由</p>
+        </div>
+      </div>
+
+      <div class="container">
+          <table class="table table-hover"> 
+                <tr>
+                  <th>消費名稱</th>
+                  <th>消費類型</th>
+                  <th>支出</th>
+                  <th>更新操作</th>
+                  <th>刪除操作</th>
+                </tr>
+                    <% for (var i=0;i<accounts.length; i++) { %>
+                        <tr>
+                           <td><a href="/accounts/<%= accounts[i].id %>"><%= accounts[i].title %></a></td>
+                           <td><%= accounts[i].type %></td>
+                           <td><%= accounts[i].cost %></td>
+                           <td>
+                              <a href="/accounts/<%= accounts[i].id %>/update">
+                                <button type="submit" class="btn btn-warning">更新</button>
+                              </a>
+                           </td>
+                           <td>
+                               <form method="post" action="/accounts/<%= accounts[i].id %>/delete">
+                                   <button type="submit" class="btn btn-danger">刪除</button>
+                               </form>
+                           </td>
+                        </tr>
+                    <% } %>
+          </table>
+          <hr/>
+	    <footer>
+	      <p>&copy; Company 2017-2018</p>
+	    </footer>
+      </div> <!-- /container -->
+
+    </main>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
